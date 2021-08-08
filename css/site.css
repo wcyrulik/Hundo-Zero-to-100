@@ -9,6 +9,14 @@ body{
     color: var(--dark-color);
 }
 
+.odd{
+    font-weight: 100;
+}
+
+.even{
+    font-weight: bold;
+}
+
 nav {
     background-color: var(--dark-color);
 }

@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A Coding Project by Walt Cyrulik</title>
+    <title>THE HUNDRED: A Coding Project by Walt Cyrulik</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -25,7 +25,7 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#"><img src="img/WGC-Mark.png" class="d-inline-block allign-text-top" 
-            alt="W Cyrulik Logo" width="30" height="24"> APP NAME</a>
+            alt="W Cyrulik Logo" width="30" height="24"> THE HUNDRED</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -42,7 +42,8 @@
                     <a class="nav-link active" aria-current="page" href="code.html">The Code</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" target="_blank" href="#">Git Repo</a>
+                    <a class="nav-link" target="_blank" 
+                        href="https://github.com/wcyrulik/Hundo-Zero-to-100">Git Repo</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" target="_blank" href="#">About</a>
@@ -55,21 +56,86 @@
 <!-- ==== Main Section ====-->
     <main class="flex-shrink-0">
         <div class="container py-5 px-5 mt-5">
-            <h2 class="border-1 border-bottom border-dark">The Code for App Name</h2>
+            <h2 class="border-1 border-bottom border-dark">The Code for THE HUNDRED</h2>
             <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col-lg-8">
                     <pre class="line-numbers"><code class="language-javascript">
-                        //Call Hello World
-                        function helloWorld() {
-                            alert("Hello World");
+
+                        function getValues(){
+                        
+                            let startValue = document.getElementById("startValue").value;
+                            let endValue = document.getElementById("endValue").value;
+                            
+                            // parse start and end values into integers
+                            startValue = parseInt(startValue);
+                            endValue = parseInt(endValue);
+                        
+                            if (Number.isInteger(startValue) && Number.isInteger(endValue)){
+                                let numbers = generateNumbers(startValue,endValue);
+                                displayNumbers(numbers);
+                            } else {
+                                alert("You must enter integers for start and end values");
+                            }
+                        }
+                        
+                        function generateNumbers(sValue, eValue) {
+                            let numbers = [];
+                        
+                            for (let index = sValue; index <= eValue; index++) {
+                                numbers.push(index);
+                            }
+                            return numbers;
+                        }
+                        
+                        function displayNumbers(numbers){
+                            let templateRows = "";
+                        
+                            for (let index = 0; index < numbers.length; index++) {
+                                
+                                let number = numbers[index];
+                                let className = "even";
+                        
+                                if (number % 2 == 0){
+                                    className = "even";
+                                } else {
+                                    className = "odd";
+                                }
+                        
+                            // template literals do not render properly in prism, consequently,
+                            // for a proper look at the following assignment of templateRows, 
+                            // you will need to view site.js in the GitHub repo.
+                            
+                                templateRows += `<tr><td class="${className}">${number}</td></tr>`;
+                                
+                            }
+                            document.getElementById("results").innerHTML = templateRows;
                         }
                     </code>
                    </pre>
                 </div>
                 <div class="col-lg-4">
-                    <p>The code is structured in one function.</p>
-                    <h5>Hello World</h5>
-                    <p>Hello World is a function that displays an alert with a message of "Hello World"</p>
+                    <p>The code is structured in three function.</p>
+                    <h5>getValues</h5>
+                    <p>This function is invoked by the click event listener defined in app.html.  The
+                        functions receives input from the UI, validates that the inputs are integers,
+                        and calls the generateNumbers function, and the displayResults function.
+                    </p>
+                    
+                    <h5>generateNumbers</h5>
+                    <p>The generateNumbers function initializes an array called 'numbers' and
+                        then starts a loop from startValue to endValue.  Inside the loop, the loop
+                        index is pushed (added) to the array numbers.  When the loop terminates,
+                        the numbers array is returned to the calling function getValues.
+                    </p>
+                    <h5>displayResults</h5>
+                    <p>The displayResults function once again loops through the array of numbers.  
+                        Each number is then evaluated to be either even or odd, and a css class name
+                        is assigned accordingly.  A template literal is built up by concatenating a
+                        new table row to the growing string.
+                    </p>
+                    <p>Once the loop completes the dom is updated by assigning the just constructed
+                        templateRow to the results element with the innerHTML function.
+                    </p>
                 </div>
             </div>
         </div>
@@ -87,8 +153,8 @@
                 </div>
                 <div class="col d-flex allign-items-center justify-content-start justify-content-lg-end">
                    <div class="row">
-                       <div class="col social"><a href="#" target="_blank"><i class="fa fa-linkedin fa-2x"></i></a></div>
-                       <div class="col social"><a href="#" target="_blank"><i class="fa fa-github fa-2x"></i></a></div>
+                       <div class="col social"><a href="https://www.linkedin.com/in/walter-cyrulik-759b6788/" target="_blank"><i class="fa fa-linkedin fa-2x"></i></a></div>
+                       <div class="col social"><a href="https://github.com/wcyrulik?tab=repositories" target="_blank"><i class="fa fa-github fa-2x"></i></a></div>
                        <div class="col social"><a href="#" target="_blank"><i class="fa fa-twitter fa-2x"></i></a></div>
                    </div> 
                 </div>
